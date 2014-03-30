@@ -1,0 +1,5 @@
+name    'devopsil-puppet'
+version '0.1.0'
+author  'Evgeny Zislis <evgeny@devops.co.il>'
+license 'Apache License, Version 2.0'
+summary 'Manage a puppet master server and puppet agents'
