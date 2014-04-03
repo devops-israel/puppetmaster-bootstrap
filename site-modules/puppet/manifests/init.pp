@@ -46,6 +46,11 @@ class puppet(
     require => [ Package[$repo_package_name], Exec['yum makecache'] ],
   }
 
+  file { $local_puppet_path:
+    ensure    => directory,
+    recursive => true,
+  }
+
   file { $puppet_config_file:
     content => template('puppet/puppet.conf.erb'),
     require => Package[$puppet_package_name],
@@ -54,7 +59,7 @@ class puppet(
   service { $puppet_service_name:
     ensure    => running,
     enable    => true,
-    require   => Package[$puppet_package_name],
+    require   => [ Package[$puppet_package_name], File[$local_puppet_path] ],
     subscribe => File[$puppet_config_file],
   }
 
