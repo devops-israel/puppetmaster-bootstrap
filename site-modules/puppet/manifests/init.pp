@@ -47,8 +47,8 @@ class puppet(
   }
 
   file { $local_puppet_path:
-    ensure    => directory,
-    recursive => true,
+    ensure  => directory,
+    recurse => true,
   }
 
   file { $puppet_config_file:
