@@ -56,6 +56,10 @@ class puppet(
     require => Package[$puppet_package_name],
   }
 
+  file { "/etc/puppet/hiera":
+    ensure => "$local_puppet_path/hiera"
+  }
+
   service { $puppet_service_name:
     ensure    => running,
     enable    => true,
