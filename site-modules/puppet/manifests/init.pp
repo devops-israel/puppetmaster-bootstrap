@@ -52,9 +52,10 @@ class puppet(
   }
 
   service { $puppet_service_name:
-    ensure  => running,
-    enable  => true,
-    require => [ Package[$puppet_package_name], File[$puppet_config_file] ],
+    ensure    => running,
+    enable    => true,
+    require   => Package[$puppet_package_name],
+    subscribe => File[$puppet_config_file],
   }
 
 }
