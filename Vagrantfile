@@ -9,6 +9,7 @@ Vagrant.configure('2') do |v|
   v.vm.network :private_network, :ip => '192.168.50.4'
   v.vm.synced_folder '.', PUPPET_CONF_DIR, :nfs => true
   v.vm.synced_folder '.', '/vagrant', :disabled => true
+  v.vm.synced_folder 'puppet', '/opt/company/puppet', :nfs => true
 
   v.vm.provider :virtualbox do |vb|
     vb.name = "puppet.vagrant"
