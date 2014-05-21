@@ -28,6 +28,7 @@
     certname        = puppet
     confdir         = <%= @local_puppet_path %>
     basemodulepath  = $confdir/site-modules:$confdir/modules:/usr/share/puppet/modules
+    factpath        = $confdir/facts:/var/lib/puppet/lib/facter:/var/lib/puppet/facts
     autosign        = true
     # autosign        = $confdir/autosign.conf
     hiera_config    = $confdir/hiera.yaml
