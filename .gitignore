@@ -1,3 +1,4 @@
-.tmp/
-.vagrant/
-modules/
+/.tmp/
+/.vagrant/
+/modules/
+/puppet
