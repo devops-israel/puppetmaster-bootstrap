@@ -24,7 +24,7 @@ Vagrant.configure('2') do |v|
 		[main]
 			ssldir = /tmp/.puppet-ssl
 			confdir = #{PUPPET_CONF_DIR}
-			modulepath = \\$confdir/site-modules:\\$confdir/modules
+			basemodulepath = \\$confdir/site-modules:\\$confdir/modules:/usr/share/puppet/modules
 	XXX
 	touch #{PUPPET_CONF_DIR}/hiera.yaml
 	puppet apply --config #{PUPPET_CONF_FILE} #{PUPPET_CONF_DIR}/manifests/site.pp
