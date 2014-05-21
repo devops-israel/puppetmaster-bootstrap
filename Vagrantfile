@@ -1,4 +1,5 @@
 PUPPET_CONF_DIR = '/root/.puppet'
+PUPPET_CONF_FILE = '/tmp/.puppet.conf'
 
 Vagrant.configure('2') do |v|
   v.vm.hostname = 'puppet.vagrant'
@@ -17,5 +18,15 @@ Vagrant.configure('2') do |v|
     vb.cpus = 1
   end
 
-  v.vm.provision :shell, :inline => "puppet apply -v --config #{PUPPET_CONF_DIR}/puppet.conf #{PUPPET_CONF_DIR}/manifests/site.pp"
+  # WARN: do not remove the start-of-line TAB characters in heredocs
+  v.vm.provision :shell, :inline => <<-EOF
+	cat <<-XXX > #{PUPPET_CONF_FILE}
+		[main]
+			ssldir = /tmp/.puppet-ssl
+			confdir = #{PUPPET_CONF_DIR}
+			modulepath = \\$confdir/site-modules:\\$confdir/modules
+	XXX
+	touch #{PUPPET_CONF_DIR}/hiera.yaml
+	puppet apply --config #{PUPPET_CONF_FILE} #{PUPPET_CONF_DIR}/manifests/site.pp
+  EOF
 end
