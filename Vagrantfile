@@ -1,3 +1,5 @@
+PUPPET_COMPANY_NAME = ENV.fetch('PUPPET_COMPANY_NAME', 'company')
+
 PUPPET_CONF_DIR = '/root/.puppet'
 PUPPET_CONF_FILE = '/tmp/.puppet.conf'
 
@@ -24,7 +26,11 @@ Vagrant.configure('2') do |v|
 		[main]
 			ssldir = /tmp/.puppet-ssl
 			confdir = #{PUPPET_CONF_DIR}
+			hiera_config = \\$confdir/hiera.yaml
 			basemodulepath = \\$confdir/site-modules:\\$confdir/modules:/usr/share/puppet/modules
+	XXX
+	cat <<-XXX > #{PUPPET_CONF_DIR}/hiera/global.yaml
+	puppet::local_puppet_path: /opt/#{PUPPET_COMPANY_NAME}/puppet
 	XXX
 	touch #{PUPPET_CONF_DIR}/hiera.yaml
 	puppet apply --config #{PUPPET_CONF_FILE} #{PUPPET_CONF_DIR}/manifests/site.pp
