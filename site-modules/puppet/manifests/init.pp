@@ -24,7 +24,6 @@
 #
 class puppet(
   $local_puppet_path = '/opt/company/puppet',
-  $remote_puppet_git = 'git@githost.com:puppet.git',
 ) {
   $repo_package_name   = 'puppetlabs-release-6-7'
   $repo_package_url    = 'https://yum.puppetlabs.com/el/6/products/x86_64/puppetlabs-release-6-7.noarch.rpm'
