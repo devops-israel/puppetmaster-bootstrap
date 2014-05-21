@@ -27,9 +27,7 @@
 [master]
     certname = puppet
     confdir         = <%= @local_puppet_path %>
-    modulepath      = $confdir/site-modules:$confdir/modules
-    manifest        = $confdir/manifests/site.pp
-    manifestdir     = $confdir/manifests
+    environmentpath = $confdir/environments
     autosign        = $confdir/autosign.conf
     hiera_config    = $confdir/hiera.yaml
     rest_authconfig = $confdir/auth.conf
