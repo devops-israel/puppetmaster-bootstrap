@@ -25,9 +25,10 @@
     localconfig = $vardir/localconfig
 
 [master]
-    certname = puppet
+    certname        = puppet
     confdir         = <%= @local_puppet_path %>
     basemodulepath  = $confdir/site-modules:$confdir/modules:/usr/share/puppet/modules
-    autosign        = $confdir/autosign.conf
+    autosign        = true
+    # autosign        = $confdir/autosign.conf
     hiera_config    = $confdir/hiera.yaml
     rest_authconfig = $confdir/auth.conf
